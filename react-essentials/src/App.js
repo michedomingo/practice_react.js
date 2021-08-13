@@ -5,6 +5,7 @@ import './App.css';
  * - props similar to backpack you can place information in for everysingle component
  *      - when we render the component we pass the properties into the component
  *      - use dot notation in component to display information
+ * - keys can help keep data in sync / render properly as app state changes over time
  */
 function Header(props) {
   return (
@@ -20,7 +21,7 @@ function Main(props) {
       <p>We serve the most {props.adjective} food around!</p>
       <ul style={{ textAlign: 'left' }}>
         {props.dishes.map((dish) => (
-          <li>{dish}</li>
+          <li key={dish.id}>{dish.title}</li>
         ))}
       </ul>
     </section>
@@ -35,13 +36,22 @@ function Footer(props) {
   );
 }
 
-const dishes = ['Macaroni and Cheese', 'Salmon', 'Tofu with Vegetables'];
+const dishes = [
+  'Macaroni and Cheese',
+  'Salmon',
+  'Tofu with Vegetables',
+  'Minestrone',
+];
+
+// transormation function - turn list of items/dishes into objects
+const dishObjects = dishes.map((dish, i) => ({ title: dish, id: i }));
+// console.log(dishObjects);
 
 function App() {
   return (
     <div className='App'>
       <Header name='Michelle' />
-      <Main adjective='amazing' dishes={dishes} />
+      <Main adjective='amazing' dishes={dishObjects} />
       <Footer year={new Date().getFullYear()} />
     </div>
   );
