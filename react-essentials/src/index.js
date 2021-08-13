@@ -11,6 +11,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
  * - wrap App component in the router
  *      - give the app all the properties of the router
  *      - ex) location, history, etc (all lives in the router)
+ *
+ *
  */
 
 ReactDOM.render(

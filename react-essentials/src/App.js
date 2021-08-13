@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import { Home, About, Events, Contact } from './pages.js'; // App is now responsible for rendering
+import { Home, About, Events, Contact, Whoops404 } from './pages.js'; // App is now responsible for rendering
 
 /**
  * NOTES
@@ -48,6 +48,7 @@ function App({ login }) {
         <Route path='/about' element={<About />} />
         <Route path='/events' element={<Events />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path='*' element={<Whoops404 />} />
       </Routes>
     </div>
   );
