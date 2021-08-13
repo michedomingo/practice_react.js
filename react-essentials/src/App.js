@@ -1,5 +1,7 @@
-// import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import { Home, About, Events, Contact } from './pages.js'; // App is now responsible for rendering
 
 /**
  * NOTES
@@ -31,12 +33,22 @@ import './App.css';
  *      - complete / success (data has been fullfilled)
  *      - error / failed (ex. broken URL)
  *  - handling all these States is essential to track down problems / handle latency with loading
+ *
+ * Create route for each individual component
+ *      - what properties will route component have?
+ *      - ex) path, element/s
+ *      - these routes will tell the router which component to render whenever location changes
  */
 
 function App({ login }) {
   return (
     <div>
-      <h1>Hello React Testing Library</h1>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/events' element={<Events />} />
+        <Route path='/contact' element={<Contact />} />
+      </Routes>
     </div>
   );
 }
