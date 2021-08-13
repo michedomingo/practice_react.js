@@ -19,5 +19,6 @@ import { timesTwo } from './functions';
  */
 
 test('Multiplies by two', () => {
-  expect(timesTwo(4)).toBe(8);
+  expect(timesTwo(4)).toBe(8); // an assertion test
+  // returns a pass or fail; it will return a pass when a function's output returns an expected value
 });
