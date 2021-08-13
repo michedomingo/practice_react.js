@@ -1,9 +1,8 @@
 import { timesTwo } from './functions';
 
 /**
+ *
  * NOTES
- *
- *
  *
  * use jest which is configured as part of create-react-app
  * give test name:
