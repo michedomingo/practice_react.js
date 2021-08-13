@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import './App.css';
 /**
  * NOTES
@@ -7,19 +8,23 @@ import './App.css';
  *      - use dot notation in component to display information
  * - keys can help keep data in sync / render properly as app state changes over time
  *
- * - conditional rendering
+ * useState Hook
+ * - 1st item in useState array is the state variable
+ * - 2nd item / function is going to update the state
+ *      - pass in whatever you want the inital state to be into the useState function
+ *      - could be boolean, number, etc - help to many any sort of local variable to keep track of
  */
 
-function SecretComponent() {
-  return <h1>Secret info for authorized user only.</h1>;
-}
-
-function RegularComponent() {
-  return <h1>Everyone can see this component.</h1>;
-}
-
-function App(props) {
-  return <>{props.authorized ? <SecretComponent /> : <RegularComponent />}</>;
+function App() {
+  const [emotion, setEmotion] = useState('happy');
+  return (
+    <>
+      <h1>Current emotion is {emotion}!</h1>
+      <button onClick={() => setEmotion('happy')}>Happy</button>
+      <button onClick={() => setEmotion('frustrated')}>Frustrate</button>
+      <button onClick={() => setEmotion('enthusiastic')}>Enthuse</button>
+    </>
+  );
 }
 
 export default App;
