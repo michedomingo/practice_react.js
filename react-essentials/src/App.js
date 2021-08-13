@@ -1,4 +1,5 @@
 import './App.css';
+import restaurant from './restaurant.jpg';
 /**
  * NOTES
  * - a component is a function that returns UI
@@ -19,6 +20,11 @@ function Main(props) {
   return (
     <section>
       <p>We serve the most {props.adjective} food around!</p>
+      <img
+        src={restaurant}
+        height={200}
+        alt='silverware with napkin on top of plate at a restaurant table'
+      />
       <ul style={{ textAlign: 'left' }}>
         {props.dishes.map((dish) => (
           <li key={dish.id}>{dish.title}</li>
