@@ -1,4 +1,13 @@
-# Getting Started with Create React App
+# Basic Company Website
+
+Source:
+
+- [React.js Essential Training](https://www.linkedin.com/learning/react-js-essential-training/building-modern-user-interfaces-with-react?contextUrn=urn%3Ali%3AlyndaLearningPath%3A593715e0498e9e9be7fb8506&u=76277732)
+- [Exercise Files on GitHub](https://github.com/johannlilly/linkedin-learning_react-js-essential-training)
+
+---
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
