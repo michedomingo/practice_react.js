@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 /**
  * When we create a React application, we create a single page app (SAP)
@@ -17,6 +17,8 @@ import { Link, useLocation } from 'react-router-dom';
  * index.js - build router, pass all info from router to any nested components
  *
  * useLocation - Hook / function that returns current location
+ *
+ * Outlet - responsible for displaying whatever is the nested components
  */
 
 export function Home() {
@@ -36,6 +38,31 @@ export function About() {
   return (
     <div>
       <h1>[About]</h1>
+      <Outlet />
+    </div>
+  );
+}
+
+export function Services() {
+  return (
+    <div>
+      <h2>Our Services</h2>
+    </div>
+  );
+}
+
+export function CompanyHistory() {
+  return (
+    <div>
+      <h2>Our Company History</h2>
+    </div>
+  );
+}
+
+export function Location() {
+  return (
+    <div>
+      <h2>Our Location</h2>
     </div>
   );
 }
