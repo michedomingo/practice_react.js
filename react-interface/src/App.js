@@ -18,10 +18,9 @@ import AppointmentInfo from './components/AppointmentInfo';
  * inline-block: logo by default is a block, puts a little bit of space after block and puts next thing on new line
  * text-red-400: specify what you want to change to for color name/strength
  *         - anything above 500 is a shade, anything below 500 is a tint
+ * divide-y: show dividers in between the different items vertically
  *
  * <BiCalendar /> - call icon component as a HTML tag with properties
- *
- * divide-y: show dividers in between the different items vertically
  *
  * appointmentList - use variable with map function to create a temp variable called appointment for each of the items as they come in
  *      - use arrow function then parenthesis which will be what gets returned from this appointmentList and replaced instead of the expression
@@ -44,7 +43,7 @@ import AppointmentInfo from './components/AppointmentInfo';
  *
  * useEffect
  * - lets you perform 'side-effects' in function components
- *      - if you're familiar with how React lify cycle methods used to work
+ *      - if you're familiar with how React life cycle methods used to work
  *          - think of useEffect as the component did mount, component did update, and component will unmount
  * - perfect for data searching operations and manually changing the DOM when certain components are a result of these operations
  * - this is how we're going to import our content from the state of the json file
@@ -99,7 +98,17 @@ function App() {
 
       <ul className='divide-y divide-gray-200'>
         {appointmentList.map((appointment) => (
-          <AppointmentInfo key={appointment.id} appointment={appointment} />
+          <AppointmentInfo
+            key={appointment.id}
+            appointment={appointment}
+            onDeleteAppointment={(appointmentId) =>
+              setAppointmentList(
+                appointmentList.filter(
+                  (appointment) => appointment.id !== appointmentId
+                )
+              )
+            }
+          />
         ))}
       </ul>
     </div>

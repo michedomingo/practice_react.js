@@ -1,12 +1,17 @@
 import { BiTrash } from 'react-icons/bi';
 
 /**
- * Pass down appointment info from parent component into this sub-component
+ * Pass down appointment info from parent App component into this AppointmentInfo sub-component
+ *
+ * onDeleteAppointment - method/functionality to delete appointment info items
+ *      - change the data itself, parent component will manage all the data
+ *      - need to pass onDeleteAppointment through AppointmentInfo so it knows to send it back up to the parent App component
  */
-const AppointmentInfo = ({ appointment }) => {
+const AppointmentInfo = ({ appointment, onDeleteAppointment }) => {
   return (
     <li className='px-3 py-3 flex items-start'>
       <button
+        onClick={() => onDeleteAppointment(appointment.id)}
         type='button'
         className='p-1.5 mr-1.5 mt-1 rounded text-white bg-red-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
       >
