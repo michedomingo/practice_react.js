@@ -1,11 +1,19 @@
 import { BiSearch, BiCaretDown, BiCheck } from 'react-icons/bi';
+import { useState } from 'react';
 
 /**
- *
  * - by default we want to export this Search component, since it will be used in a parent component
+ * - pass info about the state from main Search component into DropDown subcomponent
+ * - when we get to the button, create an event/expression with arrow function
+ *      - setToggleSort changes that variable to the opposite of whatever the initial state is
+ *      - pass info down to DropDown sub-component via passing variable called toggle which will receive toggleSort variable
+ * - to show/hide data, return null if you don't want to show the component or return the regular component if you do want to show
  */
 
-const Dropdown = () => {
+const DropDown = ({ toggle }) => {
+  if (!toggle) {
+    return null;
+  }
   return (
     <div
       className='origin-top-right absolute right-0 mt-2 w-56
@@ -53,6 +61,7 @@ const Dropdown = () => {
 };
 
 const Search = () => {
+  let [toggleSort, setToggleSort] = useState(false);
   return (
     <div className='py-5'>
       <div className='mt-1 relative rounded-md shadow-sm'>
@@ -72,6 +81,9 @@ const Search = () => {
           <div>
             <button
               type='button'
+              onClick={() => {
+                setToggleSort(!toggleSort);
+              }}
               className='justify-center px-4 py-2 bg-blue-400 border-2 border-blue-400 text-sm text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 flex items-center'
               id='options-menu'
               aria-haspopup='true'
@@ -79,7 +91,7 @@ const Search = () => {
             >
               Sort By <BiCaretDown className='ml-2' />
             </button>
-            <Dropdown />
+            <DropDown toggle={toggleSort} />
           </div>
         </div>
       </div>
