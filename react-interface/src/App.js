@@ -28,7 +28,7 @@ import appointmentList from './data.json';
  *      - bringing in JSON data can go straight into a variable that can be used with regular JavaScript to map a series of HTML/JSX into the variable and display list easily with dot notation/jsx
  *
  * AppointmentInfo
- * use a key when looping through a series of elemments
+ * use a key when looping through a series of elements
  * - destructuring: pass along info through appointment variable, received through AppointmentInfo component
  *      - pass different variables/objects/events, makes it easier to breakdown compnents into pieces
  */
