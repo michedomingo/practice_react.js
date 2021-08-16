@@ -1,6 +1,7 @@
-import { BiCalendar } from 'react-icons/bi';
+import { BiCalendar, BiTrash } from 'react-icons/bi';
 import Search from './components/Search';
 import AddAppointment from './components/AddAppointment';
+import appointmentList from './data.json';
 
 /**
  *
@@ -18,6 +19,12 @@ import AddAppointment from './components/AddAppointment';
  *         - anything above 500 is a shade, anything below 500 is a tint
  *
  * <BiCalendar /> - call icon component as a HTML tag with properties
+ *
+ * divide-y: show dividers in between the different items vertically
+ *
+ * appointmentList - use variable with map function to create a temp variable called appointment for each of the items as they come in
+ *      - use arrow function then parenthesis which will be what gets returned from this appointmentList and replaced instead of the expression
+ *      - bringing in JSON data can go straight into a variable that can be used with regular JavaScript to map a series of HTML/JSX into the variable and display list easily with dot notation/jsx
  */
 
 function App() {
@@ -29,6 +36,34 @@ function App() {
       </h1>
       <AddAppointment />
       <Search />
+
+      <ul className='divide-y divide-gray-200'>
+        {appointmentList.map((appointment) => (
+          <li className='px-3 py-3 flex items-start'>
+            <button
+              type='button'
+              className='p-1.5 mr-1.5 mt-1 rounded text-white bg-red-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
+            >
+              <BiTrash />
+            </button>
+            <div className='flex-grow'>
+              <div className='flex items-center'>
+                <span className='flex-none font-medium text-2xl text-blue-500'>
+                  {appointment.petName}
+                </span>
+                <span className='flex-grow text-right'>
+                  {appointment.aptDate}
+                </span>
+              </div>
+              <div>
+                <b className='font-bold text-blue-500'>Owner:</b>{' '}
+                {appointment.ownerName}
+              </div>
+              <div className='leading-tight'>{appointment.aptNotes}</div>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
