@@ -1,5 +1,15 @@
 import { BiCalendarPlus } from 'react-icons/bi';
 
+/**
+ * Hooks allow you to use state and other react features without having to write classes
+ * - toggleForm: allow our app to show or hide the rest of the form
+ *
+ * userState
+ * - create the name of the variable and a function the modifies that variable
+ * - initialize userState to false, bc the form should not be displaying by default
+ * - grab the things we want to show/hide, everything except for the button
+ */
+
 const AddAppointment = () => {
   return (
     <div>
