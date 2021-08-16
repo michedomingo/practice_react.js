@@ -1,4 +1,5 @@
 import { BiArchive } from 'react-icons/bi';
+import Search from './components/Search';
 
 /**
  *
@@ -15,6 +16,7 @@ import { BiArchive } from 'react-icons/bi';
  * text-red-400: specify what you want to change to for color name/strength
  *         - anything above 500 is a shade, anything below 500 is a tint
  *
+ * <BiArchive /> - call icon component as a HTML tag with properties
  */
 
 function App() {
@@ -24,6 +26,7 @@ function App() {
         <BiArchive className='inline-block text-red-400 align-top' />
         Your Appointments
       </h1>
+      <Search />
     </div>
   );
 }
