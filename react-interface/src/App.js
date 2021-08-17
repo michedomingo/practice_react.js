@@ -70,10 +70,35 @@ import AppointmentInfo from './components/AppointmentInfo';
  * - issue the fetchData method then ask useEffect to track the fetching of data
  *      - if the data changes for some reason, useEffect will keep track of it and update our app automatically
  *
+ * - create another piece of state for the query info
+ * - create a place for query to go to the component, then the onQueryChange event to be trapped in the parent component
+ *      - query will get passed along the local query variable
+ *      - onQueryChange is going to receive something from the event, then use the setQuery method and pass along what we receive
+ * - now modify the array that has the list of items
+ *      - don't touch the origina array bc if user types input into the query field
+ *      - limit just the display of what's shown on screen and not the actual array
+ *
+ * filteredAppointments
+ * - create a separate array to show only filtered items by the query
+ * - temp item variable, return, go through different fields
+ * - for each item we're interested in searching through
+ *      - make sure that it doesn't care uppercase/lowercase with JS method .toLowerCase()
+ *      - .includes JS method to also take a look at the query and compare our petName to the query.toLowerCase jic
+ * - whenever we are mapping the appointmentList, change to map the filteredAppointments
+ *
  */
 
 function App() {
   let [appointmentList, setAppointmentList] = useState([]);
+  let [query, setQuery] = useState('');
+
+  const filteredAppointments = appointmentList.filter((item) => {
+    return (
+      item.petName.toLowerCase().includes(query.toLowerCase()) ||
+      item.ownerName.toLowerCase().includes(query.toLowerCase()) ||
+      item.aptNotes.toLowerCase().includes(query.toLowerCase())
+    );
+  });
 
   const fetchData = useCallback(() => {
     fetch('./data.json')
@@ -94,10 +119,10 @@ function App() {
         Your Appointments
       </h1>
       <AddAppointment />
-      <Search />
+      <Search query={query} onQueryChange={(myQuery) => setQuery(myQuery)} />
 
       <ul className='divide-y divide-gray-200'>
-        {appointmentList.map((appointment) => (
+        {filteredAppointments.map((appointment) => (
           <AppointmentInfo
             key={appointment.id}
             appointment={appointment}

@@ -8,6 +8,15 @@ import { useState } from 'react';
  *      - setToggleSort changes that variable to the opposite of whatever the initial state is
  *      - pass info down to DropDown sub-component via passing variable called toggle which will receive toggleSort variable
  * - to show/hide data, return null if you don't want to show the component or return the regular component if you do want to show
+ *
+ * Search functionality into Search component
+ * - trigger an event when user types something into the search box
+ *      - create an onChange event with an event variable that will get created based on what happens when user types in something
+ *          - then triggers arrow function to trigger an event which will appear on the parent component called onQueryChange
+ *              - this even is going to get passed through the target.value to get whatever is in input field
+ *              - value gets tracked through value={query}
+ *          - two way communication happening between the search module and the parent component
+ *              - whatever gets typed into the search input is going to affect the larger app component
  */
 
 const DropDown = ({ toggle }) => {
@@ -60,7 +69,7 @@ const DropDown = ({ toggle }) => {
   );
 };
 
-const Search = () => {
+const Search = ({ query, onQueryChange }) => {
   let [toggleSort, setToggleSort] = useState(false);
   return (
     <div className='py-5'>
@@ -73,7 +82,10 @@ const Search = () => {
           type='text'
           name='query'
           id='query'
-          value=''
+          value={query}
+          onChange={(event) => {
+            onQueryChange(event.target.value);
+          }}
           className='pl-8 rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300'
           placeholder='Search'
         />
