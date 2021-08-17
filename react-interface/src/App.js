@@ -86,19 +86,31 @@ import AppointmentInfo from './components/AppointmentInfo';
  *      - .includes JS method to also take a look at the query and compare our petName to the query.toLowerCase jic
  * - whenever we are mapping the appointmentList, change to map the filteredAppointments
  *
+ * JavaScript sort()
+ * - expects different variables usually a & b which allows to compare and do a simple sort based on the value of a & b
+ * - create function that will take care of the order
  */
 
 function App() {
   let [appointmentList, setAppointmentList] = useState([]);
   let [query, setQuery] = useState('');
+  let [sortBy, sortByQuery] = useState('petName');
+  let [orderBy, orderByQuery] = useState('asc');
 
-  const filteredAppointments = appointmentList.filter((item) => {
-    return (
-      item.petName.toLowerCase().includes(query.toLowerCase()) ||
-      item.ownerName.toLowerCase().includes(query.toLowerCase()) ||
-      item.aptNotes.toLowerCase().includes(query.toLowerCase())
-    );
-  });
+  const filteredAppointments = appointmentList
+    .filter((item) => {
+      return (
+        item.petName.toLowerCase().includes(query.toLowerCase()) ||
+        item.ownerName.toLowerCase().includes(query.toLowerCase()) ||
+        item.aptNotes.toLowerCase().includes(query.toLowerCase())
+      );
+    })
+    .sort((a, b) => {
+      let order = orderBy === 'asc' ? 1 : -1;
+      return a[sortBy].toLowerCase() < b[sortBy].toLowerCase()
+        ? -1 * order
+        : 1 * order;
+    });
 
   const fetchData = useCallback(() => {
     fetch('./data.json')
