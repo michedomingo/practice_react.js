@@ -3,13 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 /* 
-
 on[Event] - conventional name for props which represent events
 handle[Event] - for the methods which handle the events
 
 Function components - simpler way to write components that
-only contain a render method and don’t have their own state
-
+only contain a render method and don’t have their own states
 */
 
 function Square(props) {
@@ -25,13 +23,17 @@ class Board extends React.Component {
     super(props);
     this.state = {
       squares: Array(9).fill(null),
+      xIsNext: true,
     };
   }
 
   handleClick(i) {
     const squares = this.state.squares.slice();
-    squares[i] = 'X';
-    this.setState({ squares: squares });
+    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    this.setState({
+      squares: squares,
+      xIsNext: !this.state.xIsNext,
+    });
   }
 
   renderSquare(i) {
