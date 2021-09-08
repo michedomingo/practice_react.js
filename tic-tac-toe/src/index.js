@@ -2,16 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-/* In React, it’s conventional to use on[Event] names for props which represent events
-and handle[Event] for the methods which handle the events. */
-class Square extends React.Component {
-  render() {
-    return (
-      <button className='square' onClick={() => this.props.onClick()}>
-        {this.props.value}
-      </button>
-    );
-  }
+/* 
+
+on[Event] - conventional name for props which represent events
+handle[Event] - for the methods which handle the events
+
+Function components - simpler way to write components that
+only contain a render method and don’t have their own state
+
+*/
+
+function Square(props) {
+  return (
+    <button className='square' onClick={props.onClick}>
+      {props.value}
+    </button>
+  );
 }
 
 class Board extends React.Component {
