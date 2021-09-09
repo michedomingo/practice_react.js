@@ -66,7 +66,8 @@ class Game extends React.Component {
   }
 
   handleClick(i) {
-    const history = this.state.history;
+    /* ensure that if we 'go back in time' then make a new move from that point, we throw away all 'future' history */
+    const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
     if (calculateWinner(squares) || squares[i]) {
@@ -80,6 +81,8 @@ class Game extends React.Component {
           squares: squares,
         },
       ]),
+      stepNumber:
+        history.length /* ensure we don't get stuck showing the same move after a new one has been made */,
       xIsNext: !this.state.xIsNext,
     });
   }
