@@ -2,6 +2,7 @@
 
 ### Links
 
+- [JavaScript fundamentals before learning React](https://www.robinwieruch.de/javascript-fundamentals-react-requirements)
 - [Modern JavaScript in React Documentation](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c)
 - [Props vs State](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md)
 - [ReactJS: Props vs. State](https://lucybain.com/blog/2016/react-state-vs-pros/)
