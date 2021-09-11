@@ -26,7 +26,7 @@ const App = () => {
 
       <hr />
 
-      <List />
+      <List list={stories} />
     </div>
   );
 };
@@ -44,9 +44,9 @@ const Search = () => {
   );
 };
 
-const List = () => (
+const List = (props) => (
   <ul>
-    {list.map(function (item) {
+    {props.list.map(function (item) {
       return (
         <li key={item.objectID}>
           <span>
