@@ -36,6 +36,14 @@ const getAsyncStories = () =>
     setTimeout(() => resolve({ data: { stories: initialStories } }), 2000)
   );
 
+const storiesReducer = (state, action) => {
+  if (action.type === 'SET_STORIES') {
+    return action.payload;
+  } else {
+    throw new Error();
+  }
+};
+
 const App = () => {
   const [searchTerm, setSearchTerm] = useSemiPersistentState('search', 'React');
 
