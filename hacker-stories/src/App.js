@@ -32,7 +32,9 @@ const initialStories = [
 ];
 
 const getAsyncStories = () =>
-  Promise.resolve({ data: { stories: initialStories } });
+  new Promise((resolve) =>
+    setTimeout(() => resolve({ data: { stories: initialStories } }), 2000)
+  );
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useSemiPersistentState('search', 'React');
