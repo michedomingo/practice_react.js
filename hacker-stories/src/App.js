@@ -129,7 +129,9 @@ const Item = ({ item, onRemoveItem }) => {
       <span>{item.num_comments}</span>
       <span>{item.points}</span>
       <span>
-        <button type='button' onClick={handleRemoveItem} Dismiss></button>
+        <button type='button' onClick={handleRemoveItem}>
+          Dismiss
+        </button>
       </span>
     </li>
   );
