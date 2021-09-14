@@ -58,10 +58,12 @@ const App = () => {
   });
 
   React.useEffect(() => {
+    if (searchTerm === '') return;
+
     dispatchStories({ type: 'STORIES_FETCH_INIT' });
 
     // https://github.com/michedomingo/practice_react.js/pull/16
-    fetch(`${API_ENDPOINT}react`) // B
+    fetch(`${API_ENDPOINT}${searchTerm}`) // B (pull16) // ${searchTerm} (pull17)
       .then((response) => response.json()) // C
       .then((result) => {
         dispatchStories({
@@ -82,10 +84,6 @@ const App = () => {
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
-
-  const searchedStories = stories.data.filter((story) =>
-    story.title.toLowerCase().includes(searchTerm.toLocaleLowerCase())
-  );
 
   return (
     <div>
