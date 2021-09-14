@@ -51,6 +51,8 @@ const storiesReducer = (state, action) => {
 const App = () => {
   const [searchTerm, setSearchTerm] = useSemiPersistentState('search', 'React');
 
+  const [url, setUrl] = React.useState(`${API_ENDPOINT}${searchTerm}`);
+
   const [stories, dispatchStories] = React.useReducer(storiesReducer, {
     data: [],
     isLoading: false,
@@ -87,8 +89,12 @@ const App = () => {
     });
   };
 
-  const handleSearch = (event) => {
+  const handleSearchInput = (event) => {
     setSearchTerm(event.target.value);
+  };
+
+  const handleSearchSubmit = () => {
+    setUrl(`${API_ENDPOINT}${searchTerm}`);
   };
 
   return (
