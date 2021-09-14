@@ -59,15 +59,10 @@ const App = () => {
     isError: false,
   });
 
-  // https://github.com/michedomingo/practice_react.js/pull/18
-  // A
   const handleFetchStories = React.useCallback(() => {
-    // B
-    if (!searchTerm) return;
-
     dispatchStories({ type: 'STORIES_FETCH_INIT' });
 
-    fetch(`${API_ENDPOINT}${searchTerm}`)
+    fetch(url)
       .then((response) => response.json())
       .then((result) => {
         dispatchStories({
@@ -76,11 +71,11 @@ const App = () => {
         });
       })
       .catch(() => dispatchStories({ type: 'STORIES_FETCH_FAILURE' }));
-  }, [searchTerm]); // E
+  }, [url]);
 
   React.useEffect(() => {
-    handleFetchStories(); // C
-  }, [handleFetchStories]); // D
+    handleFetchStories();
+  }, [handleFetchStories]);
 
   const handleRemoveStory = (item) => {
     dispatchStories({
