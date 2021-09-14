@@ -57,22 +57,28 @@ const App = () => {
     isError: false,
   });
 
-  React.useEffect(() => {
+  // https://github.com/michedomingo/practice_react.js/pull/18
+  // A
+  const handleFetchStories = React.useCallback(() => {
+    // B
     if (!searchTerm) return;
 
     dispatchStories({ type: 'STORIES_FETCH_INIT' });
 
-    // https://github.com/michedomingo/practice_react.js/pull/16
-    fetch(`${API_ENDPOINT}${searchTerm}`) // B (pull16) // ${searchTerm} (pull17)
-      .then((response) => response.json()) // C
+    fetch(`${API_ENDPOINT}${searchTerm}`)
+      .then((response) => response.json())
       .then((result) => {
         dispatchStories({
           type: 'STORIES_FETCH_SUCCESS',
-          payload: result.hits, // D
+          payload: result.hits,
         });
       })
       .catch(() => dispatchStories({ type: 'STORIES_FETCH_FAILURE' }));
-  }, [searchTerm]);
+  }, [searchTerm]); // E
+
+  React.useEffect(() => {
+    handleFetchStories(); // C
+  }, [handleFetchStories]); // D
 
   const handleRemoveStory = (item) => {
     dispatchStories({
