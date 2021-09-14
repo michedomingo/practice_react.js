@@ -57,18 +57,16 @@ const App = () => {
   });
 
   React.useEffect(() => {
-    setIsLoading(true);
+    dispatchStories({ type: 'STORIES_FETCH_INIT' });
 
     getAsyncStories()
       .then((result) => {
         dispatchStories({
-          type: 'SET_STORIES',
+          type: 'STORIES_FETCH_SUCCESS',
           payload: result.data.stories,
         });
-
-        setIsLoading(false);
       })
-      .catch(() => setIsError(true));
+      .catch(() => dispatchStories({ type: 'STORIES_FETCH_FAILURE' }));
   }, []);
 
   const handleRemoveStory = (item) => {
