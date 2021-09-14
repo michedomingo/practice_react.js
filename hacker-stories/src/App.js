@@ -56,7 +56,11 @@ const App = () => {
 
     getAsyncStories()
       .then((result) => {
-        setStories(result.data.stories);
+        dispatchStories({
+          type: 'SET_STORIES',
+          payload: result.data.stories,
+        });
+
         setIsLoading(false);
       })
       .catch(() => setIsError(true));
@@ -67,7 +71,10 @@ const App = () => {
       (story) => item.objectID !== story.objectID
     );
 
-    setStories(newStories);
+    dispatchStories({
+      type: 'SET_STORIES',
+      payload: newStories,
+    });
   };
 
   const handleSearch = (event) => {
