@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 // https://github.com/michedomingo/practice_react.js/pull/16
 const API_ENDPOINT = 'https://hn.algolia.com/api/v1/search?query='; // A
@@ -62,12 +63,12 @@ const App = () => {
   const handleFetchStories = React.useCallback(() => {
     dispatchStories({ type: 'STORIES_FETCH_INIT' });
 
-    fetch(url)
-      .then((response) => response.json())
+    axios
+      .get(url)
       .then((result) => {
         dispatchStories({
           type: 'STORIES_FETCH_SUCCESS',
-          payload: result.hits,
+          payload: result.data.hits,
         });
       })
       .catch(() => dispatchStories({ type: 'STORIES_FETCH_FAILURE' }));
