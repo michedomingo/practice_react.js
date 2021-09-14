@@ -67,13 +67,9 @@ const App = () => {
   }, []);
 
   const handleRemoveStory = (item) => {
-    const newStories = stories.filter(
-      (story) => item.objectID !== story.objectID
-    );
-
     dispatchStories({
-      type: 'SET_STORIES',
-      payload: newStories,
+      type: 'REMOVE_STORIES',
+      payload: item,
     });
   };
 
