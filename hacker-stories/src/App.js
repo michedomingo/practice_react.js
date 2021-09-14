@@ -58,7 +58,7 @@ const App = () => {
   });
 
   React.useEffect(() => {
-    if (searchTerm === '') return;
+    if (!searchTerm) return;
 
     dispatchStories({ type: 'STORIES_FETCH_INIT' });
 
@@ -72,7 +72,7 @@ const App = () => {
         });
       })
       .catch(() => dispatchStories({ type: 'STORIES_FETCH_FAILURE' }));
-  }, []);
+  }, [searchTerm]);
 
   const handleRemoveStory = (item) => {
     dispatchStories({
