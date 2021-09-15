@@ -100,20 +100,12 @@ const App = () => {
     <div>
       <h1>My Hacker Stories</h1>
 
-      <form onSubmit={handleSearchSubmit}>
-        <InputWithLabel
-          id='search'
-          value={searchTerm}
-          isFocused
-          onInputChange={handleSearchInput}
-        >
-          <strong>Search:</strong>
-        </InputWithLabel>
+      <SearchForm
+        searchTerm={searchTerm}
+        onSearchInput={handleSearchInput}
+        onSearchSumbit={handleSearchSubmit}
+      />
 
-        <button type='submit' disabled={!searchTerm}>
-          Submit
-        </button>
-      </form>
       <hr />
 
       {stories.isError && <p>Something went wrong ...</p>}
@@ -126,6 +118,23 @@ const App = () => {
     </div>
   );
 };
+
+const SearchForm = ({ searchTerm, onSearchInput, onSearchSumbit }) => (
+  <form onSubmit={onSearchSumbit}>
+    <InputWithLabel
+      id='search'
+      value={searchTerm}
+      isFocused
+      onInputChange={onSearchInput}
+    >
+      <strong>Search:</strong>
+    </InputWithLabel>
+
+    <button type='submit' disabled={!searchTerm}>
+      Submit
+    </button>
+  </form>
+);
 
 // https://github.com/michedomingo/practice_react.js/pull/10
 const InputWithLabel = ({
